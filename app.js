@@ -62,6 +62,33 @@ app.get("/books/:id/edit", async (req, res) => {
 
 });
 
+// UPDATE ROUTE
+// Update existing book
+app.put("/books/:id", async (req, res) => {
+
+    const { id } = req.params;
+
+    await bookModel.findByIdAndUpdate(id, req.body);
+
+    // res.redirect(`/books/${id}`);
+    res.redirect("/books");
+
+});
+
+
+// DELETE ROUTE
+// Delete book
+app.delete("/books/:id", async (req, res) => {
+
+    const { id } = req.params;
+
+    await bookModel.findByIdAndDelete(id);
+
+    res.redirect("/books");
+
+});
+
+
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
 });
