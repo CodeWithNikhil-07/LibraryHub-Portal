@@ -7,8 +7,17 @@ const port = process.env.PORT;
 const connectDB = require("./db/db");
 const bookModel = require("./models/book");
 
+const path = require("path");
 
 connectDB();
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(methodOverride("_method"));
+
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
+
 
 app.get("/books", async (req, res) => {
     const books = await bookModel.find({});
