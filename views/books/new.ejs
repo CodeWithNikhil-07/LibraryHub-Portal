@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Book Management System</h1>
+    <h2>Add Book</h2>
+
+
+<form action="/books" method="post">
+
+    <label>Book Name</label>
+    <input type="text"
+    placeholder="Enter name"
+    name="title"
+    required>
+    
+    <br>
+    <br>
+    <label>Author</label>
+
+    <input type="text"
+    placeholder="Enter author name"
+    name="author"
+    required>
+   
+    <br>
+    <br>
+
+    <label>Price</label>
+
+    <input type="number"
+    placeholder="Enter price"
+    name="price"
+    required>
+
+    <br>
+    <br>
+
+    <label>category</label>
+
+    <input type="text"
+    placeholder="Enter Kind of book"
+    name="category"
+    required>
+
+    <br>
+    <br>
+
+    <label>Available:</label>
+
+<input
+    type="radio"
+    id="yes"
+    name="available"
+    value="true"
+    checked
+>
+<label for="yes">Yes</label>
+
+<input
+    type="radio"
+    id="no"
+    name="available"
+    value="false"
+>
+<label for="no">No</label>
+
+<br><br>
+
+<button>Submit</button>
+
+</form>
+
+
+</body>
+</html>
