@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>All Books</title>
+</head>
+
+<body>
+
+    <h1>Library Books</h1>
+
+    <a href="/books/new">Add New Book</a>
+
+    <form action="/books" method="GET">
+
+        <input type="text" name="search" placeholder="Search by title...">
+
+        <button type="submit">Search</button>
+
+        <select name="category">
+            <option value="">All categories</option>
+            <option value="Programming" <%=category==="Programming" ? "selected" : "" %>
+                >Programming</option>
+
+            <option value="Finance" <%=category==="Finance" ? "selected" : "" %>
+                >Finance</option>
+
+            <option value="Self Help" <%=category==="Self Help" ? "selected" : "" %>
+                >Self Help</option>
+
+            <option value="Fantasy" <%=category==="Fantasy" ? "selected" : "" %>
+                >Fantasy</option>
+
+        </select>
+
+        <select name="available">
+            <option value="">All</option>
+            <option value="true">Available</option>
+            <option value="false">UnAvailable</option>
+        </select>
+
+        <select name="sort">
+            <option value="">Sort by</option>
+
+            <option value="low" <%=sort === "low" ? "selected" : "" %>>
+                Price Low → High
+            </option>
+
+            <option value="high" <%=sort === "high" ? "selected" : "" %>>
+                Price High → Low
+            </option>
+        </select>
+
+    </form>
+
+    <hr>
+
+    <!-- <h2>Categories</h2> -->
+
+    <!-- <a href="/books?category=Programming">Programming</a>
+<a href="/books?category=Finance">Finance</a>
+<a href="/books?category=Self Help">Self Help</a>
+<a href="/books?category=Fantasy">Fantasy</a> -->
+
+    <hr>
+
+    <% books.forEach (book=> { %>
+
+        <h3>
+            <%= book.title %>
+        </h3>
+
+        <p>Author: <%= book.author %>
+        </p>
+
+        <p>Price: ₹<%= book.price %>
+        </p>
+
+        <p>Category: <%= book.category %>
+        </p>
+
+        <p>
+            <%= book.available ? "Available" : "Not Available" %>
+        </p>
+
+        <a href="/books/<%= book._id %>">View</a>
+
+        <a href="/books/<%= book._id %>/edit">Edit</a>
+
+        <form action="/books/<%= book._id %>?_method=DELETE" method="POST">
+            <button>Delete</button>
+        </form>
+
+        <hr>
+
+        <% }) %>
+
+</body>
+
+</html>
