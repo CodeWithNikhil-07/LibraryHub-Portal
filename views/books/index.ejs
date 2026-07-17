@@ -69,8 +69,7 @@
 
     <!-- Hero -->
 
-    <section
-        class="bg-gradient-to-r from-indigo-700 via-indigo-600 to-blue-600 text-white">
+    <section class="bg-gradient-to-r from-indigo-700 via-indigo-600 to-blue-600 text-white">
 
         <div class="max-w-7xl mx-auto px-6 py-16">
 
@@ -117,7 +116,7 @@
 
     </section>
 
-        <!-- Search Section -->
+    <!-- Search Section -->
 
     <section id="books" class="max-w-7xl mx-auto px-6 py-10">
 
@@ -149,48 +148,35 @@
 
             </div>
 
-            <form
-                action="/books"
-                method="GET"
-                class="grid md:grid-cols-3 gap-5">
+            <form action="/books" method="GET" class="grid md:grid-cols-3 gap-5">
 
-                <input
-                    type="text"
-                    name="search"
-                    placeholder="🔍 Search books..."
-                    value="<%= search || '' %>"
+                <input type="text" name="search" placeholder="🔍 Search books..." value="<%= search || '' %>"
                     class="border border-slate-300 rounded-xl px-5 py-3 outline-none focus:ring-4 focus:ring-indigo-200">
 
-                <select
-                    name="category"
+                <select name="category"
                     class="border border-slate-300 rounded-xl px-5 py-3 outline-none focus:ring-4 focus:ring-indigo-200">
 
                     <option value="">All Categories</option>
 
-                    <option value="Programming"
-                        <%= category==="Programming" ? "selected" : "" %>>
+                    <option value="Programming" <%=category==="Programming" ? "selected" : "" %>>
                         Programming
                     </option>
 
-                    <option value="Finance"
-                        <%= category==="Finance" ? "selected" : "" %>>
+                    <option value="Finance" <%=category==="Finance" ? "selected" : "" %>>
                         Finance
                     </option>
 
-                    <option value="Self Help"
-                        <%= category==="Self Help" ? "selected" : "" %>>
+                    <option value="Self Help" <%=category==="Self Help" ? "selected" : "" %>>
                         Self Help
                     </option>
 
-                    <option value="Fantasy"
-                        <%= category==="Fantasy" ? "selected" : "" %>>
+                    <option value="Fantasy" <%=category==="Fantasy" ? "selected" : "" %>>
                         Fantasy
                     </option>
 
                 </select>
 
-                <button
-                    class="bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-semibold transition">
+                <button class="bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-semibold transition">
 
                     Search
 
@@ -199,3 +185,117 @@
             </form>
 
         </div>
+
+        <!-- Book Grid Starts -->
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
+
+            <% if (books.length===0) { %>
+
+                <div class="col-span-full">
+
+                    <div class="bg-white rounded-2xl shadow-lg p-12 text-center">
+
+                        <div class="text-7xl mb-4">
+                            📚
+                        </div>
+
+                        <h2 class="text-3xl font-bold text-slate-800">
+                            No Books Found
+                        </h2>
+
+                        <p class="text-slate-500 mt-3">
+                            Your library is empty. Start by adding your first book.
+                        </p>
+
+                        <a href="/books/new"
+                            class="inline-block mt-6 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-xl font-semibold transition">
+
+                            + Add First Book
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+                <% } %>
+
+                    <% books.forEach(book=> { %>
+
+                        <div
+                            class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition duration-300 overflow-hidden hover:-translate-y-2">
+
+                            <!-- Card Header -->
+
+                            <div
+                                class="bg-gradient-to-r from-indigo-600 to-blue-600 h-28 flex items-center justify-center">
+
+                                <span class="text-6xl">
+                                    📖
+                                </span>
+
+                            </div>
+
+                            <!-- Card Body -->
+
+                            <div class="p-6">
+
+                                <h2 class="text-2xl font-bold text-slate-800">
+
+                                    <%= book.title %>
+
+                                </h2>
+
+                                <p class="text-slate-500 mt-2">
+
+                                    by <span class="font-semibold">
+                                        <%= book.author %>
+                                    </span>
+
+                                </p>
+
+                                <!-- Price -->
+
+                                <div class="mt-5 flex justify-between items-center">
+
+                                    <span class="bg-green-100 text-green-700 px-4 py-2 rounded-full font-semibold">
+
+                                        ₹ <%= book.price %>
+
+                                    </span>
+
+                                    <% if(book.available){ %>
+
+                                        <span
+                                            class="bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-semibold">
+
+                                            ✅ Available
+
+                                        </span>
+
+                                        <% } else { %>
+
+                                            <span
+                                                class="bg-red-100 text-red-700 px-4 py-2 rounded-full text-sm font-semibold">
+
+                                                ❌ Unavailable
+
+                                            </span>
+
+                                            <% } %>
+
+                                </div>
+
+                                <!-- Category -->
+
+                                <div class="mt-5">
+
+                                    <span
+                                        class="inline-block bg-indigo-100 text-indigo-700 px-4 py-2 rounded-full text-sm font-medium">
+
+                                        <%= book.category %>
+
+                                    </span>
+
+                                </div>
