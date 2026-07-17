@@ -116,3 +116,86 @@
         </div>
 
     </section>
+
+        <!-- Search Section -->
+
+    <section id="books" class="max-w-7xl mx-auto px-6 py-10">
+
+        <div class="bg-white rounded-2xl shadow-lg p-6">
+
+            <div class="flex justify-between items-center mb-6">
+
+                <div>
+
+                    <h2 class="text-3xl font-bold text-slate-800">
+                        All Books
+                    </h2>
+
+                    <p class="text-slate-500">
+                        Total Books :
+                        <span class="font-semibold">
+                            <%= books.length %>
+                        </span>
+                    </p>
+
+                </div>
+
+                <a href="/books/new"
+                    class="bg-green-600 hover:bg-green-700 text-white px-5 py-3 rounded-xl font-semibold shadow">
+
+                    + New Book
+
+                </a>
+
+            </div>
+
+            <form
+                action="/books"
+                method="GET"
+                class="grid md:grid-cols-3 gap-5">
+
+                <input
+                    type="text"
+                    name="search"
+                    placeholder="🔍 Search books..."
+                    value="<%= search || '' %>"
+                    class="border border-slate-300 rounded-xl px-5 py-3 outline-none focus:ring-4 focus:ring-indigo-200">
+
+                <select
+                    name="category"
+                    class="border border-slate-300 rounded-xl px-5 py-3 outline-none focus:ring-4 focus:ring-indigo-200">
+
+                    <option value="">All Categories</option>
+
+                    <option value="Programming"
+                        <%= category==="Programming" ? "selected" : "" %>>
+                        Programming
+                    </option>
+
+                    <option value="Finance"
+                        <%= category==="Finance" ? "selected" : "" %>>
+                        Finance
+                    </option>
+
+                    <option value="Self Help"
+                        <%= category==="Self Help" ? "selected" : "" %>>
+                        Self Help
+                    </option>
+
+                    <option value="Fantasy"
+                        <%= category==="Fantasy" ? "selected" : "" %>>
+                        Fantasy
+                    </option>
+
+                </select>
+
+                <button
+                    class="bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-semibold transition">
+
+                    Search
+
+                </button>
+
+            </form>
+
+        </div>
