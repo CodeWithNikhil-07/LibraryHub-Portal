@@ -1,100 +1,118 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>All Books</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#4F46E5",
+                        secondary: "#6366F1",
+                        success: "#16A34A",
+                        danger: "#DC2626",
+                        dark: "#0F172A"
+                    }
+                }
+            }
+        }
+    </script>
 </head>
 
-<body>
+<body class="bg-slate-100">
 
-    <h1>Library Books</h1>
+    <!-- Navbar -->
 
-    <a href="/books/new">Add New Book</a>
+    <nav class="bg-white shadow-md sticky top-0 z-50">
 
-    <form action="/books" method="GET">
+        <div class="max-w-7xl mx-auto px-6">
 
-        <input type="text" name="search" placeholder="Search by title...">
+            <div class="flex justify-between items-center h-16">
 
-        <button type="submit">Search</button>
+                <div class="flex items-center gap-3">
 
-        <select name="category">
-            <option value="">All categories</option>
-            <option value="Programming" <%=category==="Programming" ? "selected" : "" %>
-                >Programming</option>
+                    <div
+                        class="w-11 h-11 rounded-xl bg-indigo-600 flex items-center justify-center text-white text-xl font-bold shadow-lg">
+                        📚
+                    </div>
 
-            <option value="Finance" <%=category==="Finance" ? "selected" : "" %>
-                >Finance</option>
+                    <div>
 
-            <option value="Self Help" <%=category==="Self Help" ? "selected" : "" %>
-                >Self Help</option>
+                        <h1 class="text-2xl font-bold text-slate-800">
+                            LibraryMS
+                        </h1>
 
-            <option value="Fantasy" <%=category==="Fantasy" ? "selected" : "" %>
-                >Fantasy</option>
+                        <p class="text-xs text-slate-500">
+                            Manage your books efficiently
+                        </p>
 
-        </select>
+                    </div>
 
-        <select name="available">
-            <option value="">All</option>
-            <option value="true">Available</option>
-            <option value="false">UnAvailable</option>
-        </select>
+                </div>
 
-        <select name="sort">
-            <option value="">Sort by</option>
+                <a href="/books/new"
+                    class="bg-indigo-600 hover:bg-indigo-700 transition text-white px-5 py-2 rounded-lg font-semibold shadow-md">
+                    + Add Book
+                </a>
 
-            <option value="low" <%=sort === "low" ? "selected" : "" %>>
-                Price Low → High
-            </option>
+            </div>
 
-            <option value="high" <%=sort === "high" ? "selected" : "" %>>
-                Price High → Low
-            </option>
-        </select>
+        </div>
 
-    </form>
+    </nav>
 
-    <hr>
+    <!-- Hero -->
 
-    <!-- <h2>Categories</h2> -->
+    <section
+        class="bg-gradient-to-r from-indigo-700 via-indigo-600 to-blue-600 text-white">
 
-    <!-- <a href="/books?category=Programming">Programming</a>
-<a href="/books?category=Finance">Finance</a>
-<a href="/books?category=Self Help">Self Help</a>
-<a href="/books?category=Fantasy">Fantasy</a> -->
+        <div class="max-w-7xl mx-auto px-6 py-16">
 
-    <hr>
+            <div class="max-w-3xl">
 
-    <% books.forEach (book=> { %>
+                <h1 class="text-5xl font-extrabold leading-tight">
 
-        <h3>
-            <%= book.title %>
-        </h3>
+                    Library Management
+                    <span class="text-blue-200">
+                        Dashboard
+                    </span>
 
-        <p>Author: <%= book.author %>
-        </p>
+                </h1>
 
-        <p>Price: ₹<%= book.price %>
-        </p>
+                <p class="mt-5 text-lg text-blue-100">
 
-        <p>Category: <%= book.category %>
-        </p>
+                    Organize your collection, manage books,
+                    keep track of availability and maintain
+                    your digital library with ease.
 
-        <p>
-            <%= book.available ? "Available" : "Not Available" %>
-        </p>
+                </p>
 
-        <a href="/books/<%= book._id %>">View</a>
+                <div class="mt-8 flex gap-4">
 
-        <a href="/books/<%= book._id %>/edit">Edit</a>
+                    <a href="/books/new"
+                        class="bg-white text-indigo-700 px-6 py-3 rounded-xl font-semibold hover:scale-105 transition shadow-lg">
 
-        <form action="/books/<%= book._id %>?_method=DELETE" method="POST">
-            <button>Delete</button>
-        </form>
+                        Add New Book
 
-        <hr>
+                    </a>
 
-        <% }) %>
+                    <a href="#books"
+                        class="border border-white px-6 py-3 rounded-xl hover:bg-white hover:text-indigo-700 transition">
 
-</body>
+                        Browse Books
 
-</html>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
